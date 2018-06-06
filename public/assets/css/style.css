@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+
+body{
+  background-color: #00050d;
+  background-image: url("https://www.transparenttextures.com/patterns/black-linen-2.png");
+
+}
+
+.header{
+  background-image: url("../images/annie-spratt-166381-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.header h1{
+  text-align: center;
+  color: #fff;
+  font-family: 'Dancing Script', cursive;
+  font-size: 75px;
+
+}
+
+.header h2{
+  text-align: center;
+  color: #fff;
+}
+
+.header h3{
+  text-align: center;
+  color: #fff;
+}
+
+#nytimes{
+  max-width: 100%;
+  max-height: 200px;
+
+}
+
+/* .displayFrame{
+  border: solid #fff 2px;
+
+} */
+
+.scrapedArticle{
+  border: solid #fff 2px;
+  color: #fff;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px:
+}
