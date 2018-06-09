@@ -39,12 +39,14 @@
           <link><h6 class="card-text url-link">{{this.link}}</h6></link>
       </div>
     </div>
-    <form action="/save" method="POST">
-      <input id="article-title" type="hidden" name="title" value="{{this.title}}">
-      <input id="article-summary" type="hidden" name="link" value={{this.summary}}>
-      <input id="article-link" type="hidden" name="link" value={{this.link}}>
-      <button type="submit" class="btn btn-secondary">SAVE ARTICLE</button>
-    </form>
+    <div class="row">
+      <div class="col-6">
+
+          <button type="submit" class="btn btn-secondary"  data-id={{this._id}}>SAVE ARTICLE</button>
+
+      </div>
+    </div>
+
   </div>
 </div>
       </div>
