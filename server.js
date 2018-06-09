@@ -74,9 +74,13 @@ app.use(express.static('public'));
 // Import routes and give the server access to them.
 var routes = require("./controllers/scraper.js");
 
-app.use("/", routes);
 
-mongoose.connect("mongodb://localhost/mongo-scraper");
+app.use("/", routes);
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
+// mongoose.connect("mongodb://localhost/mongo-scraper");
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
 var db = mongoose.connection;
 
