@@ -1,6 +1,54 @@
 <header class="header">
-  <h1><img src='../public/assets/images/NYT-wordmark.png'/></h1>
+  <h1>The New York Times</h1>
   <h3>Food</h3>
   <h2>Web-Scraper</h2>
-
 </header>
+<div class="container">
+  <nav class="nav nav-pills nav-justified">
+    <form action="/scrape" method="POST" class="navbar-form">
+    <button type="submit" class="btn btn-default">SCRAPE NEW ARTICLES!</button>
+    </form>
+    <a class="nav-item nav-link" href="/">Home</a>
+    <a class="nav-item nav-link" href="/savedarticles">Saved Articles</a>
+  </nav>
+</div>
+
+
+<div class="container">
+
+  <div class="displayFrame">
+    {{#each articles}}
+    <div class="col-12 scrapedArticle">
+
+    <div class="row">
+      <div class="card">
+  <div class="row">
+    <div class="col-12">
+      <div class="card-header">
+        <h3 class="card-title headline">{{this.title}}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12">
+        <p class="card-text summary">{{this.summary}}</p>
+      </div>
+      <div class="col-12">
+          <link><h6 class="card-text url-link">{{this.link}}</h6></link>
+      </div>
+    </div>
+    <form action="/save" method="POST">
+      <input id="article-title" type="hidden" name="title" value="{{this.title}}">
+      <input id="article-summary" type="hidden" name="link" value={{this.summary}}>
+      <input id="article-link" type="hidden" name="link" value={{this.link}}>
+      <button type="submit" class="btn btn-secondary">SAVE ARTICLE</button>
+    </form>
+  </div>
+</div>
+      </div>
+    </div>
+    {{/each}}
+
+</div>

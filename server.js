@@ -1,27 +1,35 @@
 //dependencies
 const express=require('express');
-const handlebars=require('express-handlebars');
-// const mongoose=require('mongoose');
-const mongojs=require('mongojs');
+const exphbs=require('express-handlebars');
+const mongoose=require('mongoose');
+// const mongojs=require('mongojs');
+
 const cheerio=require('cheerio');
 const bodyParser=require('body-parser');
 const request=require('request');
 const path=require('path');
+const axios=require('axios');
+const logger=require('morgan');
+
+let Note = require("./models/Note.js");
+let Article = require("./models/Article.js");
 
 //initialize express
+// let db=require("./models");
 
+var PORT=process.env.PORT || 7000;
 var app=express();
 
 //database configuration
-let databaseURL='scraper';
-let collections=['scrapedData'];
+// let databaseURL='scraper';
+// let collections=['scrapedData'];
 
 // Hook mongojs configuration to the db variable
-var db = mongojs(databaseUrl, collections);
-db.on("error", function(error) {
-  console.log("Database Error:", error);
-});
-
+// var db = mongojs(databaseUrl, collections);
+// db.on("error", function(error) {
+//   console.log("Database Error:", error);
+// });
+app.use(logger("dev"));
 //setting up body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -31,7 +39,7 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 //setting up the static directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 // app.get('/', function(req, res){
 //   res.render('index');
 // })
@@ -63,7 +71,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   })
 // })
 
+// Import routes and give the server access to them.
+var routes = require("./controllers/scraper.js");
 
-app.listen(7000, function(){
+app.use("/", routes);
+
+mongoose.connect("mongodb://localhost/mongo-scraper");
+
+var db = mongoose.connection;
+
+// Show any mongoose errors
+db.on("error", function(error) {
+  console.log("Mongoose Error: ", error);
+});
+
+// Once logged in to the db through mongoose, log a success message
+db.once("open", function() {
+  console.log("Mongoose connection successful.");
+});
+
+app.listen(PORT, function(){
   console.log('Server Started on Port 7000');
 })

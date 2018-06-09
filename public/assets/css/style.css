@@ -42,9 +42,22 @@ body{
 } */
 
 .scrapedArticle{
-  border: solid #fff 2px;
-  color: #fff;
+  /* border: solid #fff 2px; */
+  color: #000;
   padding: 5px;
   margin-top: 5px;
   margin-bottom: 5px:
+}
+
+.summary{
+  font-size: 16pt;
+  padding-bottom: 5px;
+}
+
+.url-link{
+  font-size: 14pt;
+}
+
+.headline{
+  
 }
